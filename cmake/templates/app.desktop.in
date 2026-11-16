@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=TV-B-Gone
+Comment=@APP_PACKAGE_DESCRIPTION@
+Exec=/usr/bin/@PROJECT_NAME@
+Icon=share/images/zerotvbgone.png
+Terminal=false
+Categories=Utility;
+StartupNotify=false
