@@ -56,8 +56,9 @@ tiene que existir un `/dev/lircN` que sepa emitir. Se comprueba con `ir-ctl -f -
 
 ## Compilar
 
-Sólo hace falta Docker; `Tools/compilar.sh` monta el entorno (Debian 13 con CMake, SDL2 y el
-compilador cruzado) la primera vez.
+Con Docker no hace falta nada más: `Tools/compilar.sh` monta el entorno (Debian 13 con CMake,
+SDL2 y el compilador cruzado) la primera vez. Sin Docker, el mismo script usa las herramientas
+de la máquina si están instaladas (los paquetes de `Tools/Dockerfile`).
 
 ```sh
 Tools/compilar.sh pruebas     # simulador de escritorio + pruebas de la lógica

@@ -12,7 +12,8 @@ y GrapheneOS no aplica.
 
 ## Compilar y comprobar
 
-En esta máquina no hay CMake ni compilador cruzado ni sudo: todo va en Docker.
+`Tools/compilar.sh` usa Docker si lo hay (así se hizo en el servidor, que no tiene CMake ni
+compilador cruzado) y, si no, las herramientas de la máquina: los paquetes de `Tools/Dockerfile`.
 
 ```sh
 Tools/compilar.sh pruebas   # simulador (SDL2) + ctest; tiene que pasar
@@ -32,8 +33,10 @@ Tools/compilar.sh deb       # dist/ZeroTVBGone_<versión>_rev1_arm64.deb
 - **OJO**: en el simulador la configuración es `config/zerotvbgone.conf` del propio
   repositorio, y cambiar de región o de tema la reescribe. Dejarla en `dark_mode=yes`,
   `region=eu` antes de hacer commit.
-- Aparato aquí no hay: lo que no se ha probado en él se dice («sin probar en el aparato») en
-  el «Estado» y se quita cuando Bruno lo confirma.
+- **El aparato** es `cpzero` en la red de Tailscale (`ssh cpzero`, usuario `bruno`, con
+  `sudo` sin contraseña): el `.deb` se copia y se instala con `sudo apt-get install -y`. Lo
+  que haya que mirar en la pantalla lo confirma Bruno: hasta entonces se dice («sin probar en
+  el aparato») en el «Estado».
 
 ## De dónde viene
 
