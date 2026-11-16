@@ -17,6 +17,20 @@
     "license": "MIT AND CC-BY-SA-3.0",
     "source_repo": "https://github.com/baltamir1978/ZeroTVBGone",
     "author": { "github": "baltamir1978", "display_name": "baltamir1978" },
+    "locales": {
+      "es": {
+        "title": "ZeroTVBGone",
+        "summary": "Apaga casi cualquier tele: envía por infrarrojos todos los códigos de apagado"
+      },
+      "zh-CN": {
+        "title": "ZeroTVBGone",
+        "summary": "关闭几乎任何电视：通过红外发送所有已知的关机码"
+      },
+      "ja": {
+        "title": "ZeroTVBGone",
+        "summary": "ほぼすべてのテレビを消す：既知の電源オフコードを赤外線で送信"
+      }
+    },
     "share_code": "TVBG",
     "permissions": {
       "camera": false,
