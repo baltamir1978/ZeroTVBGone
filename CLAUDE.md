@@ -97,6 +97,6 @@ Convenciones del aparato que la app respeta (documentadas en `CardputerZero/laun
 
 - **0.1.0 (16-nov-2026)**: primera versión. Las dos listas del original, elección de región
   (se recuerda), cuenta y barra de progreso, parar con `Enter` o `Esc`, tema claro/oscuro.
-  Probada en el simulador; **sin probar en el aparato**: que el emisor aparezca como
-  `/dev/lircN` sin tocar nada, que el usuario del lanzador tenga permiso para abrirlo, que
-  `gpio-ir-tx` acepte portadora 0 y, sobre todo, que las teles se apaguen.
+  Probada en el simulador y **en el aparato: Bruno la probó con su tele LG y la apaga**. Le
+  pareció poco potente: no hay nada que subir desde el programa (ya va al 50 % de ciclo de
+  trabajo, que es el máximo útil; la corriente del LED la fija el hardware).

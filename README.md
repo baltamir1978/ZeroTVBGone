@@ -105,9 +105,13 @@ tests/tvbgone_test.cpp       pruebas de src/model
 **0.1.0 (16-nov-2026)** — primera versión. Probada en el simulador de escritorio: cambio de
 región, pasada completa, parar con `Enter` y con `Esc`, aviso cuando no hay emisor, tema y salida.
 
-**Sin probar en el aparato.** Queda por confirmar ahí lo importante: que el emisor aparece como
-`/dev/lircN` sin configurar nada, que la app tiene permiso para usarlo y que las teles se apagan
-(y desde qué distancia).
+**Probada en el aparato** (16-nov-2026) con una tele LG: emite sin configurar nada y la apaga.
+
+**Alcance.** Es corto, de la misma habitación: el Cardputer Zero tiene un solo LED infrarrojo
+pequeño, y el TV-B-Gone original lleva cuatro de alta potencia. La app ya saca lo máximo que
+da ese LED (portadora al 50 %, que es donde más energía recibe el receptor de la tele; la app
+oficial de mando a distancia usa el 33 %): la corriente del LED la fija el circuito del aparato
+y no se puede subir desde el programa. Ayuda acercarse y apuntar bien con el borde de arriba.
 
 ## Licencia
 
