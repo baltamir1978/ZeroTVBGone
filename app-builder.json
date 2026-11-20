@@ -2,7 +2,7 @@
   "app_name": "ZeroTVBGone",
   "package_name": "zerotvbgone",
   "bin_name": "zerotvbgone",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Turns off almost any TV with the CardputerZero infrared LED",
 
   "store": {

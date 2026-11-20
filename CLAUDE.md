@@ -95,6 +95,11 @@ Convenciones del aparato que la app respeta (documentadas en `CardputerZero/laun
 
 ## Estado
 
+- **0.1.1 (20-nov-2026)**: la app ya no tiene **un núcleo al 100 %** en el aparato. Sin
+  `lv_delay_set_cb`, `lv_delay_ms(5)` del bucle principal esperaba dando vueltas (lo cazó
+  ZeroGPS con `top` y gdb: el hilo de LVGL siempre dentro de `lv_delay_ms`); venía de la
+  plantilla. Ahora `app.cpp` da a LVGL `clock_gettime` y `usleep` en el aparato y duerme lo
+  que `lv_timer_handler()` dice que falta (1-50 ms). Instalada en el aparato; sin probar a mano.
 - **0.1.0 (16-nov-2026)**: primera versión. Las dos listas del original, elección de región
   (se recuerda), cuenta y barra de progreso, parar con `Enter` o `Esc`, tema claro/oscuro.
   Probada en el simulador y **en el aparato: Bruno la probó con su tele LG y la apaga**. Le

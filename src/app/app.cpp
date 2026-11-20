@@ -17,10 +17,14 @@
 #include "theme.h"
 #include "toast.h"
 
+#include <algorithm>
 #include <cstdlib>
+#include <ctime>
 #include <filesystem>
 #include <memory>
 #include <string>
+
+#include <unistd.h>
 
 #if USE_DESKTOP
 #include "desktop_simulator_frame.h"
@@ -52,6 +56,22 @@
 
 namespace app {
 namespace {
+
+#if !USE_DESKTOP
+// En el aparato nadie le daba a LVGL una forma de dormir: sin `lv_delay_set_cb`,
+// `lv_delay_ms` espera dando vueltas, y la app tenía un núcleo al 100 % todo el rato que
+// estaba abierta (medido en el aparato con ZeroGPS el 20-nov-2026; viene de la plantilla).
+// En el simulador ya lo hacía SDL (`desktop_simulator_frame.cpp`).
+uint32_t monotonic_ms() {
+    timespec ts{};
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return static_cast<uint32_t>(ts.tv_sec * 1000ULL + ts.tv_nsec / 1000000ULL);
+}
+
+void sleep_ms(uint32_t ms) {
+    usleep(ms * 1000U);
+}
+#endif
 
 void quit_requested_observer(lv_observer_t* observer, lv_subject_t* subject) {
     auto* running = static_cast<bool*>(lv_observer_get_user_data(observer));
@@ -309,6 +329,8 @@ int Application::run() {
     DesktopSimulatorFrame simulator_frame(assets);
     auto* display = simulator_frame.display();
 #else
+    lv_tick_set_cb(monotonic_ms);
+    lv_delay_set_cb(sleep_ms);
     auto* display = init_device_display();
 #endif
     if (!display) {
@@ -351,8 +373,10 @@ int Application::run() {
            && simulator_frame.process_events()
 #endif
     ) {
-        lv_timer_handler();
-        lv_delay_ms(5);
+        // Se duerme hasta la próxima tarea de LVGL (refresco, teclado, temporizadores de las
+        // pantallas), con un tope para no tardar en ver el teclado ni el cierre.
+        const uint32_t idle_ms = lv_timer_handler();
+        lv_delay_ms(std::clamp<uint32_t>(idle_ms, 1, 50));
     }
 
     if (quit_observer) {
