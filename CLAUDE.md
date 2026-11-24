@@ -20,8 +20,7 @@ Tools/compilar.sh pruebas   # simulador (SDL2) + ctest; tiene que pasar
 Tools/compilar.sh deb       # dist/ZeroTVBGone_<versión>_rev1_arm64.deb
 ```
 
-- La primera vez descarga LVGL 9.5 y el *sysroot* de M5Stack a `.cache/` (no se versiona). Si
-  `../ZeroGallery/.cache` existe, copiarlo ahorra la descarga: es lo mismo.
+- `.cache` es un enlace a `~/.local/share/cardputer-zero-sdk` (LVGL y el *sysroot*, uno por máquina para todas las apps Zero; ver `~/Proyectos/CLAUDE.md`). En un clon nuevo: `mkdir -p ~/.local/share/cardputer-zero-sdk && ln -s ~/.local/share/cardputer-zero-sdk .cache`; si está vacío, la primera compilación lo descarga ahí.
 - GitHub Actions hace lo mismo en cada push (`.github/workflows/build.yml`).
 - **Probar sin pantalla**: el simulador corre bajo `Xvfb` dentro de la misma imagen
   (`SDL_RENDER_DRIVER=software`), se le mandan teclas con `xdotool key` y se captura con

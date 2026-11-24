@@ -128,7 +128,7 @@ gmon.out
 # =========================
 # clangd / clang / LLVM
 # =========================
-.cache/
+.cache
 .clangd
 *.plist
 
